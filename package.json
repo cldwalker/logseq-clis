@@ -1,0 +1,14 @@
+{
+  "name": "@cldwalker/logseq-clis",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": {
+    "logseq-ast": "bin/logseq_ast.mjs",
+    "logseq-block-move": "bin/logseq_block_move.mjs",
+    "logseq-roundtrip": "bin/logseq_roundtrip.mjs"
+  },
+  "dependencies": {
+    "@logseq/nbb-logseq": "^1.2.168",
+    "mldoc": "1.5.1"
+  }
+}
