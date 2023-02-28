@@ -1,15 +1,10 @@
-(ns cldwalker.logseq-clis.cli.logseq-ast
-  "Equivalent to clis/mldoc/logseq-ast but depend on logseq's graph-parser. To try this:
-
-yarn nbb-logseq logseq_ast.cljs /path/to/markdown-file"
+(ns cldwalker.logseq-clis.cli.logseq-file-ast
+  "Print the logseq ast of a given markdown file"
   (:require ["fs" :as fs]
             ["path" :as path]
             [clojure.pprint :as pprint]
+            [cldwalker.logseq-clis.util :as util]
             [logseq.graph-parser.mldoc :as gp-mldoc]))
-
-(defn file-ast [input-file config]
-  (let [body (fs/readFileSync input-file)]
-    (gp-mldoc/->edn (str body) config)))
 
 (defn -main*
   [args]
@@ -17,14 +12,14 @@ yarn nbb-logseq logseq_ast.cljs /path/to/markdown-file"
         config (gp-mldoc/default-config :markdown)]
     (if (.isDirectory (fs/lstatSync input))
       (map #(hash-map :file (path/join input %)
-                      :ast (file-ast (path/join input %) config))
+                      :ast (util/file-ast (path/join input %) config))
            (js->clj (fs/readdirSync input)))
-      (file-ast input config))))
+      (util/file-ast input config))))
 
 (defn -main
   [& args]
   (if (not= 1 (count args))
-    (println "Usage: logseq-ast IN\n\nGiven a markdown"
+    (println "Usage: logseq-file-ast IN\n\nGiven a markdown"
              "IN file or directory, parses file(s) with mldoc and writes to stdout.")
     (pprint/pprint (-main* args))))
 

@@ -1,11 +1,10 @@
 (ns logseq-block-move
-  "Equivalent to clis/mldoc/logseq-block-move but depend on logseq's graph-parser. To try this:
-
-yarn nbb-logseq logseq_block_move.cljs /path/to/md-file /path/to/new-md-file some-tag"
+  "Moves blocks with specified tag to another file or directory"
   (:require ["fs" :as fs]
             ["path" :as path]
-            ["util" :as util]
-            [clojure.string :as string]
+            [goog.string :as gstring]
+            [goog.string.format]
+            [cldwalker.logseq-clis.util :as util]
             [logseq.graph-parser.mldoc :as gp-mldoc]))
 
 (defn- handle-heading-node
@@ -52,32 +51,22 @@ yarn nbb-logseq logseq_block_move.cljs /path/to/md-file /path/to/new-md-file som
    {:keep [] :remove []}
    ast))
 
-(defn file-ast [input-file config]
-  (let [body (fs/readFileSync input-file)]
-    (gp-mldoc/->edn (str body) config)))
-
-(defn- strip-trailing-whitespace
-  "Needed b/c export has trailing whitespace bug which started somewhere b/n
-  mldoc 1.3.3 and 1.5.1"
-  [s]
-  (string/replace s #"\s+(\n|$)" "$1"))
-
 (defn move-input-to-output [input output config f]
-  (let [md-ast (file-ast input config)
+  (let [md-ast (util/file-ast input config)
         {:keys [keep remove]} (remove-by-fn f md-ast)]
     (if (empty? remove)
-      (println (util/format "%s -> %s - Did not occur as there are 0 nodes to move"
+      (println (gstring/format "%s -> %s - Did not occur as there are 0 nodes to move"
                             input output))
-      (println (util/format "%s -> %s - %s of %s nodes moved"
+      (println (gstring/format "%s -> %s - %s of %s nodes moved"
                             input output (count remove) (+ (count keep) (count remove)))))
     (if (empty? keep)
       (fs/rmSync input)
       (fs/writeFileSync input
-                        (strip-trailing-whitespace
+                        (util/strip-trailing-whitespace
                          (gp-mldoc/ast-export-markdown (-> keep clj->js js/JSON.stringify) config gp-mldoc/default-references))))
     (when (seq remove)
       (fs/writeFileSync output
-                        (strip-trailing-whitespace
+                        (util/strip-trailing-whitespace
                          (gp-mldoc/ast-export-markdown (-> remove clj->js js/JSON.stringify) config gp-mldoc/default-references))))))
 
 (defn -main*
@@ -99,8 +88,8 @@ yarn nbb-logseq logseq_block_move.cljs /path/to/md-file /path/to/new-md-file som
   [& args]
   (if (not= 3 (count args))
     (println "Usage: logseq-block-move IN OUT TAG\n\nMoves blocks and their children"
-             "tagged with TAG from IN file to OUT file.\nIf IN is a directory,"
-             "all files in directory have operation done and written to OUT directory.")
+               "tagged with TAG from IN file to OUT file.\nIf IN is a directory,"
+               "all files in directory have operation done and written to OUT directory.")
     (-main* args)))
 
 #js {:main -main}

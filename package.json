@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "bin": {
-    "logseq-ast": "bin/logseq_ast.mjs",
+    "logseq-file-ast": "bin/logseq_file_ast.mjs",
     "logseq-block-move": "bin/logseq_block_move.mjs",
     "logseq-roundtrip": "bin/logseq_roundtrip.mjs"
   },

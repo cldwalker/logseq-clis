@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import { loadFile } from '@logseq/nbb-logseq'
+import { addClassPath, loadFile } from '@logseq/nbb-logseq'
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
 const __dirname = fileURLToPath(dirname(import.meta.url));
+addClassPath(resolve(__dirname, '../src'));
 const { main } = await loadFile(resolve(__dirname, '../src/cldwalker/logseq_clis/cli/logseq_roundtrip.cljs'));
 
 // Expects to be called as node X.js ...
