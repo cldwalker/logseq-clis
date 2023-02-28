@@ -56,9 +56,9 @@
         {:keys [keep remove]} (remove-by-fn f md-ast)]
     (if (empty? remove)
       (println (gstring/format "%s -> %s - Did not occur as there are 0 nodes to move"
-                            input output))
+                               input output))
       (println (gstring/format "%s -> %s - %s of %s nodes moved"
-                            input output (count remove) (+ (count keep) (count remove)))))
+                               input output (count remove) (+ (count keep) (count remove)))))
     (if (empty? keep)
       (fs/rmSync input)
       (fs/writeFileSync input
@@ -88,8 +88,8 @@
   [& args]
   (if (not= 3 (count args))
     (println "Usage: logseq-block-move IN OUT TAG\n\nMoves blocks and their children"
-               "tagged with TAG from IN file to OUT file.\nIf IN is a directory,"
-               "all files in directory have operation done and written to OUT directory.")
+             "tagged with TAG from IN file to OUT file.\nIf IN is a directory,"
+             "all files in directory have operation done and written to OUT directory.")
     (-main* args)))
 
 #js {:main -main}
