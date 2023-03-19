@@ -72,6 +72,12 @@ pages/example.md -> new-pages/example.md - 6 of 8 nodes moved
 
 Parses and then exports a markdown file. Useful for testing mldoc's export.
 
+### logseq-class-hierarchy
+
+Prints a graph's class hierarchy to a logseq-compatible markdown file. Useful
+for generating a navigable tree for a graph's ontology a.k.a. "table of
+contents".
+
 ## Development
 
 Code is organized under the following directories:

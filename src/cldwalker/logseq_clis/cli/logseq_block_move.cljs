@@ -1,4 +1,4 @@
-(ns logseq-block-move
+(ns cldwalker.logseq-clis.cli.logseq-block-move
   "Moves blocks with specified tag to another file or directory"
   (:require ["fs" :as fs]
             ["path" :as path]

@@ -1,4 +1,4 @@
-(ns logseq-roundtrip
+(ns cldwalker.logseq-clis.cli.logseq-roundtrip
   "For given file or directory, roundtrips mldoc library by parsing and then exporting it"
   (:require ["fs" :as fs]
             ["path" :as path]

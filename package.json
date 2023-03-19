@@ -5,7 +5,8 @@
   "bin": {
     "logseq-file-ast": "bin/logseq_file_ast.mjs",
     "logseq-block-move": "bin/logseq_block_move.mjs",
-    "logseq-roundtrip": "bin/logseq_roundtrip.mjs"
+    "logseq-roundtrip": "bin/logseq_roundtrip.mjs",
+    "logseq-class-hierarchy": "bin/logseq_class_hierarchy.mjs"
   },
   "dependencies": {
     "@logseq/nbb-logseq": "^1.2.168",
