@@ -12,8 +12,8 @@
 (defn- ->tree-children [m e name-transform]
   (mapv #(let [ch (->tree-children m % name-transform)]
            (cond-> {:name (name-transform %)}
-                   (seq ch)
-                   (assoc :children (sort-by :name ch))))
+             (seq ch)
+             (assoc :children (sort-by :name ch))))
         (m e)))
 
 (defn- parents-map->nodes
