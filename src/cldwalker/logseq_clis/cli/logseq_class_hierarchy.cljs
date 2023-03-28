@@ -10,7 +10,11 @@
   (loop [cur elem res []] (if-let [new-cur (m cur)] (recur new-cur (conj res new-cur)) res)))
 
 (defn- ->tree-children [m e name-transform]
-  (mapv #(let [ch (->tree-children m % name-transform)] (cond-> {:name (name-transform %)} (seq ch) (assoc :children ch))) (m e)))
+  (mapv #(let [ch (->tree-children m % name-transform)]
+           (cond-> {:name (name-transform %)}
+                   (seq ch)
+                   (assoc :children (sort-by :name ch))))
+        (m e)))
 
 (defn- parents-map->nodes
   ([parents_] (parents-map->nodes parents_ identity))
@@ -19,7 +23,9 @@
          children-map (into {} (map (fn [[k v]]
                                       [k (mapv first v)]) (group-by val parents_)))
          nodes (mapv
-                (fn [root] {:name (name-transform root) :children (->tree-children children-map root name-transform)})
+                (fn [root]
+                  {:name (name-transform root)
+                   :children (sort-by :name (->tree-children children-map root name-transform))})
                 roots)]
      nodes)))
 
