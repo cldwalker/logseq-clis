@@ -71,7 +71,7 @@
 (defn -main [& args]
   (let [{:keys [help] :as options} (cli/parse-opts args {:spec spec})
         _ (when (or help (zero? (count args)))
-            (println (str "Usage: logseq-rdf-export FILE [OPTIONS]\nOptions:\n"
+            (println (str "Usage: logseq-class-hierarchy FILE [OPTIONS]\nOptions:\n"
                           (cli/format-opts {:spec spec})))
             (js/process.exit 1))]
     (write-class-file (first args) options)))
