@@ -1,7 +1,19 @@
 {:deps
  {logseq/graph-parser
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "82cf4d3c65acbf230a3170640fe271dd74095067"
-   :git/tag "0.9.8"
+   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
    :deps/root "deps/graph-parser"}
-  #_{:local/root "../work/logseq/deps/graph-parser"}}}
+  #_{:local/root "../../work/logseq/deps/graph-parser"}
+  logseq/db
+  {:git/url "https://github.com/logseq/logseq"
+   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :deps/root "deps/db"}
+  logseq/outliner
+  {:git/url "https://github.com/logseq/logseq"
+   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :deps/root "deps/outliner"}
+  logseq/scripts
+  #_{:git/url "https://github.com/logseq/logseq"
+   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :deps/root "scripts"}
+  {:local/root "../../work/logseq/scripts"}}}

@@ -9,7 +9,8 @@
     "logseq-class-hierarchy": "bin/logseq_class_hierarchy.mjs"
   },
   "dependencies": {
-    "@logseq/nbb-logseq": "^1.2.168",
-    "mldoc": "1.5.1"
+    "@logseq/nbb-logseq": "^1.2.173",
+    "mldoc": "1.5.1",
+    "better-sqlite3": "8.0.1"
   }
 }
