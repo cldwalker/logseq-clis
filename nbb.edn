@@ -1,19 +1,19 @@
 {:deps
  {logseq/graph-parser
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :git/sha "36edf87db3794cd49f7c90f37288c5b82db1e3c9"
    :deps/root "deps/graph-parser"}
   #_{:local/root "../../work/logseq/deps/graph-parser"}
   logseq/db
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :git/sha "36edf87db3794cd49f7c90f37288c5b82db1e3c9"
    :deps/root "deps/db"}
   logseq/outliner
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+   :git/sha "36edf87db3794cd49f7c90f37288c5b82db1e3c9"
    :deps/root "deps/outliner"}
   logseq/scripts
-  #_{:git/url "https://github.com/logseq/logseq"
-   :git/sha "b3efb93335a1951199430833078aa5c4d14b090a"
+  {:git/url "https://github.com/logseq/logseq"
+   :git/sha "36edf87db3794cd49f7c90f37288c5b82db1e3c9"
    :deps/root "scripts"}
-  {:local/root "../../work/logseq/scripts"}}}
+  #_{:local/root "../../work/logseq/scripts"}}}
